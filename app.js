@@ -45,6 +45,10 @@ const connection = require("./database/db")
         res.render("register", { msg: "Juan De Ore" })
 
     })
+    app.get("/passReset", function (req, res) {
+        res.render("passReset")
+
+    })
 
 // Post para insertar nuevo usuario - HACER REGISTRO
 

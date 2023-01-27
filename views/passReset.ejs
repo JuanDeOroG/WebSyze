@@ -26,10 +26,14 @@
 
 <body>
     <section class="register">
+
         <div class="img-box">
             <img src="resources/img/logo/logo-blanco.png" alt="logo">
-            <h1>Cuenta</h1>
+            <h1>Recuperar contraseña</h1>
+            
         </div>
+        <p>Al precionar el boton "enviar", se le mandará la contraseña al correo registrado con los datos digitados. </p>
+<br>
         <div class="contendor-form">
             <form action="/auth" method="POST" class="form-register">
                 <div class="input-box">
@@ -37,18 +41,25 @@
                     <span>Usuario</span>
                 </div>
                 <div class="input-box">
-                    <input type="password" name="password" id="password" required="required">
-                    <span>Contraseña</span>
+                    <input type="telefono" name="telefono" id="password" required="required">
+                    <span>Telefono</span>
+                </div>
+                <div class="input-box">
+                    <input type="email" name="correo" id="correo" required="required">
+                    <span>Correo</span>
                 </div>
                 <div class="btn">
-                    <input type="submit" value="Entrar">
+                    <input type="submit" value="Enviar">
                 </div>
+
                 <div class="enlaces">
-                    <a href="/passReset">¿Has perdido tu contraseña?</a>
-                    <a href="#">Registrarse</a>
+                    <a href="/login">Ir al Login</a>
+                    
                 </div>
             </form>
+
         </div>
+
     </section>
 </body>
 
