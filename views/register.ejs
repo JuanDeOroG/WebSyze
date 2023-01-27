@@ -1,51 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" href="resources/css/register.css">
+    
+    <!--Metadatos(IMPORTANTES)-->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="author" content="WebSyze">
+  <meta name="description" content="Compañía de páginas web y aplicaciones">
+  <meta name="keywords" content="HTML, CSS, JavaScript, React">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>W E B S Y Z E | activated</title>
+  <!--Favicon(logo en el titulo)-->
+  <link rel="icon" type="image/x-icon" href="resources/img/logo/logo-negro.png">
+    <!--Boostrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <!--Css-->
+    <link rel="stylesheet" href="resources/css/register.css" />
+    <!--Iconos de bootstrap-->
+    <!--Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Fira+Sans:wght@200&family=Montserrat:wght@200&family=Rubik&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 
 <body>
-    <h1>Registrarme</h1>
-    <form action="/register" method="POST">
+    <div class="container">
+        <h1 class="text-left">¡Registrate ahora!</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <form method="POST" action="#">
+                    <ul class="contact-form">
+                        <li>
+                            <div class="col-md-6">
+                                <input name="nombre" placeholder="Nombre de usuario" required="required" size="8" type="text" />
+                            </div>
 
-        <label for="usuario">Usuario</label>
-        <input type="text" name="usuario" id="usuario" placeholder="Juan2323" require
+                            <div class="col-md-6">
+                                <input name="email" placeholder="Email" required="required" size="8" type="email" />
+                            </div>
+                        </li>
 
-       <label for="nombres">Nombre/s</label> 
-        <input type="text" name="nombres" id="nombres" placeholder="Ej: Juan David" required>
+                        <li>
+                            <div class="col-md-6">
+                                <input name="telefono" placeholder="Escribe tu numero" required="required" size="8" type="text" />
+                            </div>
 
-        <label for="apellidos">Apellidos</label>
-        <input type="text" name="apellidos" id="apellidos" placeholder="Ej: De Oro Gelvez" required>
+                            <div class="col-md-6">
+                                <input name="contraseña" placeholder="Contraseña" required="required" size="8" type="password" />
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col-md-12">
+                                <input name="asunto" placeholder="Asunto" required="required" size="8" type="text" />
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col-md-12">
+                                <textarea class="span12" name="mensaje" placeholder="Escribe tu proyecto o mensaje" required="required"></textarea>
+                            </div>
+                        </li>
 
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" placeholder="Contraseña/Pass" required>
-       
-        <br><br>
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email"  required>
-       
-        <label for="telefono">Telefono</label>
-        <input type="number" name="telefono" id="telefono" placeholder="Ej: 3006527383" required>
-
-        
-        <label for="asunto">Asunto</label>
-        <input type="text" name="asunto" id="asunto" required>
-        <br><br>
-        <label for="necesidad">¿Qué necesitas de nuestro servico?</label>
-        <textarea name="necesidad" id="necesidad" rows="5" cols="40" placeholder="Cuentanos tu necesidad."></textarea>
-
-        <input type="submit" value="registrar" class="btn-registrar">
-
-        
-
-    </form>
+                        <li>
+                            <div class="col-md-12">
+                                <button type="submit">
+                    Enviar mensaje
+                    <span
+                      class="glyphicon glyphicon-arrow-right"
+                      aria-hidden="true">
+                    </span>
+                  </button>
+                            </div>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
-
 
