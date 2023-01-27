@@ -32,24 +32,29 @@
             <h1>Recuperar contraseña</h1>
             
         </div>
-        <p>Al precionar el boton "enviar", se mandará una solicitud a los administradores para realizar un cambio de contraseña </p>
+        <p>Digite sus datos para realizar la petición de contraseña.</p>
 <br>
         <div class="contendor-form">
-            <form action="/auth" method="POST" class="form-register">
+            <form action="/passReset" method="POST" class="form-register">
                 <div class="input-box">
                     <input type="text" name="usuario" id="usuario" required="required">
                     <span>Usuario</span>
                 </div>
                 <div class="input-box">
-                    <input type="telefono" name="telefono" id="password" required="required">
+                    <input type="tel" name="telefono" id="password" required="required">
                     <span>Telefono</span>
                 </div>
                 <div class="input-box">
                     <input type="email" name="correo" id="correo" required="required">
                     <span>Correo</span>
                 </div>
+                <div class="input-box">
+                    <input type="text" name="mensaje" id="mensaje" required="required">
+                    <span>Mensaje</span>
+                </div>
+                
                 <div class="btn">
-                    <input type="submit" value="Enviar">
+                    <input type="submit" value="Enviar petición">
                 </div>
 
                 <div class="enlaces">

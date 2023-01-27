@@ -1,5 +1,6 @@
 const express =require("express")
 const app= express()
+const mailer = require("nodemailer")
 
 // seteamos para capturar los datos del formulario
 app.use(express.urlencoded({extended:false}))
@@ -53,17 +54,16 @@ const connection = require("./database/db")
 // Post para insertar nuevo usuario - HACER REGISTRO
 
 app.post("/register",async function (req,res) {
-    const nombres = req.body.nombres.toUpperCase()
-    const apellidos = req.body.apellidos.toUpperCase()
-    const password = req.body.password
+    const nombre = req.body.nombre.toUpperCase()
+    const password = req.body.contraseña
     const email = req.body.email.toUpperCase()
     const telefono = req.body.telefono
     const asunto = req.body.asunto.toUpperCase()
-    const necesidad = req.body.necesidad.toUpperCase()
-    const usuario =req.body.usuario
+    const mensaje = req.body.mensaje.toUpperCase()
+    
     let paswordHash= await bcryptjs.hash(password,8)
 
-    connection.query("INSERT INTO usuarios_registrados SET ?", { nombres: nombres, apellidos: apellidos, password: paswordHash, email: email, telefono: telefono, asunto: asunto, necesidad: necesidad, usuario: usuario },async function (error,results) {
+    connection.query("INSERT INTO usuarios_registrados SET ?", { nombre: nombre, password: paswordHash, email: email, telefono: telefono, asunto: asunto, mensaje: mensaje },async function (error,results) {
         if(error){
             console.log("Error al registrar: ", error)
             res.send("Hubo un error tecnico al momento de intentar realizar el registro bro, revisa avr...")
@@ -78,14 +78,14 @@ app.post("/register",async function (req,res) {
 // Post para iniciar sesion - AUTENTICACIÓN
 
 app.post("/auth",async (req,res)=>{
-    const usuario = req.body.usuario
+    const nombre = req.body.nombre
     
     const password = req.body.password
 
     let paswordHash = await bcryptjs.hash(password,8)
 
-    if (usuario && password){
-        connection.query('SELECT * FROM `usuarios_registrados` WHERE usuario ="' + usuario + '"',async function (error, rows,fields) {
+    if (nombre && password){
+        connection.query('SELECT * FROM `usuarios_registrados` WHERE nombre ="' +nombre + '"',async function (error, rows,fields) {
             if (rows.length == 0 || !(await bcryptjs.compare(password,rows[0].password))){
                 res.send("Usuario o contraseña incorrectas...")
             }else{
@@ -99,6 +99,51 @@ app.post("/auth",async (req,res)=>{
         })
     }
 
+})
+
+
+// POST para mandar correo de solicitud de cambio de contraseña
+
+app.post("/passReset",async function (req,res) {
+
+    
+
+    const enviarMail= async function () {
+        const usuario = req.body.usuario
+        const telefono = req.body.telefono
+        const correo = req.body.correo
+        const mensajeText = req.body.mensaje
+        config = {
+            host :"smtp.gmail.com",
+            port : 587,
+            auth:{
+                user:"mapacheblanco4@gmail.com",
+                pass: "riyslicoabfwztqi"
+            },
+            tls: {
+                rejectUnauthorized: false
+            } }
+
+        const transporte = mailer.createTransport(config)
+
+        const mensaje ={
+            from: "mapacheblanco4@gmail.com",
+            to: "mapacheblanco4@gmail.com",
+            subject:"Contraseña solicitada de "+usuario,
+            text: mensajeText + ". Información: correo mandado con el telefono: " + telefono + " y con el correo: " + correo
+        }
+
+        const info = await transporte.sendMail(mensaje);
+        
+    }
+
+    enviarMail();
+
+    res.render("login")
+
+    
+    
+    
 })
 
 // app.post("/datos", async (req, res) => {
