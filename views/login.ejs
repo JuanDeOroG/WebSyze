@@ -25,10 +25,23 @@
 </head>
 
 <body>
+    <% if(sesion=="definido"){ %>
+        <script>
+        window.addEventListener("load", goindex)
+        
+        function goindex() {
+        window.location.href = "/"
+        }</script>
+
+        <% } %> 
+    
+    
     <section class="register">
         <div class="img-box">
             <img src="resources/img/logo/logo-blanco.png" alt="logo">
             <h1>Cuenta</h1>
+                                <a href="/">Ir a Pagina principal</a>
+
         </div>
         <div class="contendor-form">
             <form action="/auth" method="POST" class="form-register">
@@ -53,3 +66,4 @@
 </body>
 
 </html>
+<script src="resources/javascript/login.js"></script>

@@ -1,1 +1,44 @@
-CREATE TABLE `raccoonsyze`.`usuarios_registrados` (`nombres` VARCHAR(55) NOT NULL , `apellidos` VARCHAR(55) NOT NULL , `password` VARCHAR(255) NOT NULL , `email` VARCHAR(255) NOT NULL , `telefono` INT(12) NOT NULL , `asunto` VARCHAR(100) NOT NULL , `necesidad` TEXT NOT NULL , `id` INT NOT NULL AUTO_INCREMENT , PRIMARY KEY (`id`), UNIQUE (`telefono`), UNIQUE (`email`)) ENGINE = InnoDB;
+
+CREATE TABLE `usuarios_registrados` (
+  `nombre` varchar(70) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `telefono` bigint(12) NOT NULL,
+  `asunto` varchar(100) NOT NULL,
+  `mensaje` text NOT NULL,
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuarios_registrados`
+--
+
+INSERT INTO `usuarios_registrados` (`nombre`, `password`, `email`, `telefono`, `asunto`, `mensaje`, `id`) VALUES
+('JUAN DAVID', '$2a$08$mAtUopd2ayLRAJyGdXyLWOo5pvcdDHN/CuYFsMN774I1/ETgUbaMW', 'MAPACHEBLANCO4@GMAIL.COM', 3006521729, 'APLICACION DE VIAJES', 'LO QUE QUIERO ES.. Y DESPÚES.. FINALMENTE...', 15),
+('MAPACHE', '$2a$08$maYSMSCGSuCzBStwk3Bp7e/KfyvEUbvDD82BBeBSl7xdl1i078gb2', 'MAPACHE@GMAIL.COM', 3006521710, 'PAGINA WEB', 'DESCRIPCION.................', 16),
+('PEDROSKY', '$2a$08$oyIMN8Bw3AuoFzLHfsuSCuTtRiIoCOTGXur7KAsltobN8WDPeJney', 'ALEJO@GMAIL.COM', 3006521720, 'TIENDA DE TECNOLOGIA', 'DESCRIPCION DE PROYECTO: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA.', 18);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `usuarios_registrados`
+--
+ALTER TABLE `usuarios_registrados`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `telefono` (`telefono`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `nombre` (`nombre`),
+  ADD UNIQUE KEY `nombre_2` (`nombre`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios_registrados`
+--
+ALTER TABLE `usuarios_registrados`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+COMMIT;

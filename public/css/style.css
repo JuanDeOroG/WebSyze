@@ -843,7 +843,11 @@ header{
         font-size: 1.2rem;
     }
 }
-
+.logout {
+    background-color: red;
+    border-radius: 7px;
+    padding: 2px;
+}
 /***Formulario***/
 
 /***Footer***/

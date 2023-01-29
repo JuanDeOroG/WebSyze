@@ -40,8 +40,17 @@
       </div>
       <div class="cuenta-web">
         <ul class="ul-register">
-          <li><a href="/login">Cuenta <i class="bi bi-person-check"></i></a></li>
-          <li><a href="/register">Registrarse <i class="bi bi-person-fill-add"></i></a></li>
+          
+          <% if(login){ %>
+            <li><a href="/micuenta">Mi cuenta <i class="bi bi-person-check"></i></a></li>
+          <li><a href="#"> <%= name_user %>  <i class="bi bi-person-fill-add"></i></a></li>
+          <li><a class="logout" href="/logout">
+              Cerrar sesión
+            </a></li>
+          
+          <% }else{ %> 
+            <li><a href="/login">Iniciar sesión <i class="bi bi-person-check"></i></a></li>
+            <li><a href="/register"> Registrarse  <i class="bi bi-person-fill-add"></i></a></li><% } %> 
         </ul>
       </div>
     </div>
