@@ -1,2 +1,2 @@
 # WebSyze
-Entidad desarrolladora de aplicaciones web.
+Entidad desarrolladora de aplicaciones web y paginas estaticas.
