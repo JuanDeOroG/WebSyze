@@ -73,8 +73,11 @@
             <li class="item-nav"><a class="link-nav" href="#">servicios</a></li>
             <li class="item-nav"><a class="link-nav" href="#">proyectos</a></li>
             <li class="item-nav"><a class="link-nav" href="#">contáctanos</a></li>
-            <li class="item-nav"><a class="link-nav" href="/login">Cuenta</a></li>
-            <li class="item-nav"><a class="link-nav" href="/register">Registrarse</a></li>
+            <% if(login){ %> <li class="item-nav"><a class="link-nav" href="/micuenta">Perfil</a></li>
+            <li class="item-nav"><a class="link-nav" href="/logout">Salir</a></li>
+            <% } else{ %> 
+            <li class="item-nav"><a class="link-nav" href="/login">Login</a></li>
+            <li class="item-nav"><a class="link-nav" href="/register">Registrarse</a></li><% } %> 
           </ul>
         </nav>
       </div>
