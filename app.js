@@ -51,6 +51,37 @@ app.get("/passReset", function (req, res) {
 
 })
 
+app.get("/logout", function (req, res) {
+
+    req.session.destroy(function () {
+        res.redirect("/")
+
+    })
+
+})
+
+app.get("/", function (req, res) {
+
+    if (req.session.loggedin) {
+        res.render("index", { login: true, name: req.session.name })
+    } else {
+        res.render("index", { login: false, name: "debe iniciar sesión" })
+
+    }
+
+})
+
+app.get("/micuenta", function (req, res) {
+
+    if (req.session.loggedin) {
+        res.render("micuenta", { login: true, name: req.session.name })
+    } else {
+        res.send("Aún no ha iniciado sesión")
+
+    }
+
+})
+
 // Post para insertar nuevo usuario - HACER REGISTRO
 
 app.post("/register", async function (req, res) {
@@ -76,16 +107,7 @@ app.post("/register", async function (req, res) {
 })
 
 // Post para iniciar sesion - AUTENTICACIÓN
-app.get("/", function (req, res) {
-    
-    if (req.session.loggedin) {
-        res.render("index", { login: true, name: req.session.name })
-    } else {
-        res.render("index", { login: false, name: "debe iniciar sesión"})
 
-    }
-
-})
 
 app.post("/auth", async (req, res) => {
     const nombre = req.body.nombre
@@ -164,16 +186,8 @@ app.post("/passReset", async function (req, res) {
 })
 
 
-//LOGOUT CERRAR SESIón
 
-app.get("/logout",function (req,res) {
 
-    req.session.destroy(function () {
-        res.redirect("/")
-        
-    })
-    
-})
 
 // app.post("/datos", async (req, res) => {
 //     connection.query('SELECT * FROM `usuarios_registrados`', async function (error, rows, fields) {
