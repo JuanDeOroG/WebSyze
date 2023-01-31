@@ -35,77 +35,95 @@ const connection = require("./database/db")
 // VISTAS GET
 
 
-app.get("/login", function (req, res) {
-    let sesion = "indefinido"
+    app.get("/login", function (req, res) {
+        let sesion = "indefinido"
 
-    res.render("login", {sesion:"indefinido"}
-)
+        res.render("login", {sesion:"indefinido"}
+    )
 
-})
-app.get("/register", function (req, res) {
-    res.render("register", { msg: "Juan De Ore" })
+    })
+    app.get("/register", function (req, res) {
+        res.render("register", { msg: "Juan De Ore" })
 
-})
-app.get("/passReset", function (req, res) {
-    res.render("passReset")
-
-})
-
-app.get("/logout", function (req, res) {
-
-    req.session.destroy(function () {
-        res.redirect("/")
+    })
+    app.get("/passReset", function (req, res) {
+        res.render("passReset")
 
     })
 
-})
+    app.get("/logout", function (req, res) {
 
-app.get("/", function (req, res) {
+        req.session.destroy(function () {
+            res.redirect("/")
 
-    if (req.session.loggedin) {
-        res.render("index", { login: true, name: req.session.name })
-    } else {
-        res.render("index", { login: false, name: "debe iniciar sesión" })
+        })
 
-    }
+    })
 
-})
+    app.get("/", function (req, res) {
 
-app.get("/micuenta", function (req, res) {
-
-    if (req.session.loggedin) {
-        res.render("micuenta", { login: true, name: req.session.name })
-    } else {
-        res.send("Aún no ha iniciado sesión")
-
-    }
-
-})
-
-// Post para insertar nuevo usuario - HACER REGISTRO
-
-app.post("/register", async function (req, res) {
-    const nombre = req.body.nombre.toUpperCase()
-    const password = req.body.contraseña
-    const email = req.body.email.toUpperCase()
-    const telefono = req.body.telefono
-    const asunto = req.body.asunto.toUpperCase()
-    const mensaje = req.body.mensaje.toUpperCase()
-
-    let paswordHash = await bcryptjs.hash(password, 8)
-
-    connection.query("INSERT INTO usuarios_registrados SET ?", { nombre: nombre, password: paswordHash, email: email, telefono: telefono, asunto: asunto, mensaje: mensaje }, async function (error, results) {
-        if (error) {
-            console.log("Error al registrar: ", error)
-            res.send("Hubo un error tecnico al momento de intentar realizar el registro bro, revisa avr...")
+        if (req.session.loggedin) {
+            res.render("index", { login: true, name: req.session.name })
         } else {
-            res.render("registrado")
+            res.render("index", { login: false, name: "debe iniciar sesión" })
+
         }
 
     })
 
-})
+    app.get("/micuenta", function (req, res) {
 
+        if (req.session.loggedin) {
+            let name= req.session.name
+
+            connection.query("SELECT * from usuarios_registrados where nombre='"+name+"'",async function (error,rows,fields) {
+
+                if (error) {
+                    console.log(error)
+                    
+                }else{
+                    
+                console.log("Resultados de row: ",rows)
+                    res.render("micuenta", { login: true, name: req.session.name,rows:rows })
+
+            }
+            })
+            
+        } else {
+            res.send("Aún no ha iniciado sesión ------> <a href='/login'> Click aqui para iniciar sesión </a>")
+
+        }
+
+    })
+
+    // Post para insertar nuevo usuario - HACER REGISTRO
+
+    app.post("/register", async function (req, res) {
+        const nombre = req.body.nombre.toUpperCase()
+        const password = req.body.contraseña
+        const email = req.body.email.toUpperCase()
+        const telefono = req.body.telefono
+        const asunto = req.body.asunto.toUpperCase()
+        const mensaje = req.body.mensaje.toUpperCase()
+        let fecha = new Date();
+        const fecha_actual = fecha
+        
+
+        let paswordHash = await bcryptjs.hash(password, 8)
+
+        connection.query("INSERT INTO usuarios_registrados SET ?", { nombre: nombre, password: paswordHash, email: email, telefono: telefono, asunto: asunto, mensaje: mensaje, fecha_actual:fecha_actual}, async function (error, results) {
+            if (error) {
+                console.log("Error al registrar: ", error)
+                res.send("Hubo un error tecnico al momento de intentar realizar el registro bro, revisa avr...")
+            } else {
+                res.render("registrado")
+            }
+
+        })
+
+    })
+
+    
 // Post para iniciar sesion - AUTENTICACIÓN
 
 
@@ -184,22 +202,6 @@ app.post("/passReset", async function (req, res) {
 
 
 })
-
-
-
-
-
-// app.post("/datos", async (req, res) => {
-//     connection.query('SELECT * FROM `usuarios_registrados`', async function (error, rows, fields) {
-//         if (rows.length != 0){
-//             res.json(rows)
-//         } else {
-//             console.log("revisa avr")
-
-//         }})
-// })
-
-
 
 
 app.listen(3000, (req, res) => {

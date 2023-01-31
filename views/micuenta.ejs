@@ -9,5 +9,28 @@
 <body>
     ----> Aquí va el perfil y la info del proyecto solicitado por el cliente <------
     <a href="/">Ir a pagina principal</a>
+    
+
+    <% for(x of rows){ %> 
+        
+        <p>Nombre de Usuario: <%= x.nombre %></p>
+        <p>Email: <%= x.email %>
+        </p>
+        <p>Tu telefono: <%= x.telefono %>
+        </p>
+
+        <p>Asunto de proyecto solicitado: <%= x.asunto %>
+        </p>
+        <p>Descripción de proyecto solicitado: <%= x.mensaje %>
+        </p>
+        <p>Tiempo: <%= x.fecha_actual %>
+        </p>
+
+        <p>Tiempo acordado: <%= x.tiempoAcordado %>
+        </p>
+
+
+        
+        <% } %> 
 </body>
 </html>
