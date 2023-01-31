@@ -5,14 +5,76 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi cuenta</title>
+    <link rel="stylesheet" href="/resources/css/micuenta.css">
 </head>
 <body>
     ----> Aquí va el perfil y la info del proyecto solicitado por el cliente <------
     <a href="/">Ir a pagina principal</a>
+
+
+    <div class="_1azKr">
+        <% for(x of rows){ %>
+        <h2 class="_1gB7x" data-test="shop-section">Detalles de tu cuenta.</h2>
+        <ul>
+            <li class="_8roiG"></span><button
+                    class="WOZnx" data-test="purchase-button"></button>
+                <div class="_3RWEg">
+                    <div class="_3hso6 _1SReZ">
+                    </div>
+                </div>
+                <p class="_2QQA_">Nombre de Usuario: <%= x.nombre %></p>
+            </li>
+
+            <li class="_8roiG"></span><button class="WOZnx" data-test="purchase-button"></button>
+                <div class="_3RWEg">
+                    <div class="_3hso6 _1SReZ">
+                    </div>
+                </div>
+                <p class="_2QQA_">Email: <%= x.email %>%>
+                </p>
+            </li>
+
+            <li class="_8roiG"></span><button class="WOZnx" data-test="purchase-button"></button>
+                <div class="_3RWEg">
+                    <div class="_3hso6 _1SReZ">
+                    </div>
+                </div>
+                <p class="_2QQA_">Tu telefono: <%= x.telefono %>
+                </p>
+            </li>
+            
+            <li class="_8roiG"></span><button class="WOZnx" data-test="purchase-button"></button>
+                <div class="_3RWEg">
+                    <div class="_3hso6 _1SReZ">
+                    </div>
+                </div>
+                <p class="_2QQA_">Asunto de proyecto solicitado: <%= x.asunto %>
+                </p>
+            </li>
+
+            <li class="_8roiG"></span><button class="WOZnx" data-test="purchase-button"></button>
+                <div class="_3RWEg">
+                    <div class="_3hso6 _1SReZ">
+                    </div>
+                </div>
+                <p class="_2QQA_">Descripción de proyecto solicitado: <%= x.mensaje %>
+                </p>
+            </li>
+            <li class="_8roiG"></span><button class="WOZnx" data-test="purchase-button"></button>
+                <div class="_3RWEg">
+                    <div class="_3hso6 _1SReZ">
+                    </div>
+                </div>
+                <p class="_2QQA_">Tiempo: <%= x.fecha_actual %>
+                </p>
+            </li>
+        </ul>
+        <% } %>
+    </div>
     
 
-    <% for(x of rows){ %> 
-        
+     
+<!--         
         <p>Nombre de Usuario: <%= x.nombre %></p>
         <p>Email: <%= x.email %>
         </p>
@@ -27,10 +89,10 @@
         </p>
 
         <p>Tiempo acordado: <%= x.tiempoAcordado %>
-        </p>
+        </p> -->
 
 
         
-        <% } %> 
+        
 </body>
 </html>
