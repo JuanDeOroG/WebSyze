@@ -100,6 +100,7 @@ const connection = require("./database/db")
 
     app.post("/register", async function (req, res) {
         const nombre = req.body.nombre.toUpperCase()
+        const nombreEmpresa = req.body.nombreEmpresa.toUpperCase()
         const password = req.body.contraseña
         const email = req.body.email.toUpperCase()
         const telefono = req.body.telefono
@@ -111,7 +112,7 @@ const connection = require("./database/db")
 
         let paswordHash = await bcryptjs.hash(password, 8)
 
-        connection.query("INSERT INTO usuarios_registrados SET ?", { nombre: nombre, password: paswordHash, email: email, telefono: telefono, asunto: asunto, mensaje: mensaje, fecha_actual:fecha_actual}, async function (error, results) {
+        connection.query("INSERT INTO usuarios_registrados SET ?", { nombre: nombre, nombreEmpresa: nombreEmpresa, password: paswordHash, email: email, telefono: telefono, asunto: asunto, mensaje: mensaje, fecha:fecha_actual}, async function (error, results) {
             if (error) {
                 console.log("Error al registrar: ", error)
                 res.send("Hubo un error tecnico al momento de intentar realizar el registro bro, revisa avr...")
